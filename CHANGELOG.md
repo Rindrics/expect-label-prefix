@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.15](https://github.com/Rindrics/require-label-prefix-single/compare/v0.0.14...v0.0.15) - 2024-03-18
+- Log config inside `App.New()` by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/40
+
 ## [v0.0.14](https://github.com/Rindrics/require-label-prefix-single/compare/v0.0.13...v0.0.14) - 2024-03-18
 - Improve logging by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/38
 
