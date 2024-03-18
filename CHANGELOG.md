@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.18](https://github.com/Rindrics/require-label-prefix-single/compare/v0.0.17...v0.0.18) - 2024-03-18
+- Update `README.md` by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/48
+
 ## [v0.0.17](https://github.com/Rindrics/require-label-prefix-single/compare/v0.0.16...v0.0.17) - 2024-03-18
 - Correct hard-coded comment body by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/44
 
