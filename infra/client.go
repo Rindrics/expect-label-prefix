@@ -24,9 +24,8 @@ func NewGitHubClient(token string, logger *slog.Logger) *GitHubClient {
 }
 
 func (g *GitHubClient) PostComment(p application.PostCommentParams) error {
-	g.logger.Debug("posting comment", "body", p)
-	body := "comment body"
-	comment := &github.IssueComment{Body: &body}
+	g.logger.Debug("posting comment", "body", p.Body)
+	comment := &github.IssueComment{Body: &p.Body}
 	_, _, err := g.client.Issues.CreateComment(context.Background(), p.RepoInfo.Owner, p.RepoInfo.Repo, p.Number, comment)
 	return err
 }
