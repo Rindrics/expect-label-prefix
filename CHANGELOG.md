@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.0.1](https://github.com/Rindrics/require-label-prefix-single/compare/v1.0.0...v1.0.1) - 2024-03-18
+- Remove 'pull request' from `README.md` because it is unsupported yet by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/52
+
 ## [v1.0.0](https://github.com/Rindrics/require-label-prefix-single/compare/v0.0.18...v1.0.0) - 2024-03-18
 - Update action name by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/50
 
