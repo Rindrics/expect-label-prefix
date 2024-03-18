@@ -11,7 +11,7 @@ import (
 	"github.com/google/go-github/github"
 )
 
-func LoadEventFromEnv() (*github.IssuesEvent, error) {
+func LoadEventFromEnv() (interface{}, error) {
 	eventPath := os.Getenv("GITHUB_EVENT_PATH")
 	if eventPath == "" {
 		return nil, fmt.Errorf("GITHUB_EVENT_PATH environment variable not set")
@@ -22,26 +22,52 @@ func LoadEventFromEnv() (*github.IssuesEvent, error) {
 		return nil, err
 	}
 
-	var event github.IssuesEvent
-	if err := json.Unmarshal(data, &event); err != nil {
+	// Unmarshal the data into a generic map
+	var genericData map[string]interface{}
+	if err := json.Unmarshal(data, &genericData); err != nil {
 		return nil, err
 	}
 
-	return &event, nil
+	// Judge the type of the event
+	if _, ok := genericData["issue"]; ok {
+		var event github.IssuesEvent
+		if err := json.Unmarshal(data, &event); err != nil {
+			return nil, err
+		}
+		return &event, nil
+	} else if _, ok := genericData["pull_request"]; ok {
+		var event github.PullRequestEvent
+		if err := json.Unmarshal(data, &event); err != nil {
+			return nil, err
+		}
+		return &event, nil
+	} else {
+		return nil, fmt.Errorf("unsupported or unknown event type in the provided data")
+	}
 }
 
-func ParseEvent(event *github.IssuesEvent, l *slog.Logger) domain.EventInfo {
-	title := event.GetIssue().GetTitle()
-	number := event.GetIssue().GetNumber()
-
-	var labels []string
-	for _, label := range event.GetIssue().Labels {
-		labels = append(labels, *label.Name)
+func ParseEvent(event interface{}, l *slog.Logger) domain.EventInfo {
+	switch e := event.(type) {
+	case *github.IssuesEvent:
+		title := e.GetIssue().GetTitle()
+		number := e.GetIssue().GetNumber()
+		var labels []string
+		for _, label := range e.GetIssue().Labels {
+			labels = append(labels, *label.Name)
+		}
+		l.Debug("parsed", "title", title, "number", number, "labels", labels)
+		return domain.EventInfo{Number: number, Labels: labels}
+	case *github.PullRequestEvent:
+		title := e.GetPullRequest().GetTitle()
+		number := e.GetNumber()
+		var labels []string
+		for _, label := range e.GetPullRequest().Labels {
+			labels = append(labels, label.GetName())
+		}
+		l.Debug("parsed", "title", title, "number", number, "labels", labels)
+		return domain.EventInfo{Number: number, Labels: labels}
+	default:
+		l.Error("Unsupported event type")
+		return domain.EventInfo{}
 	}
-
-	l.Debug("parsed", "title", title)
-	l.Debug("parsed", "number", number)
-	l.Debug("parsed", "labels", labels)
-
-	return domain.EventInfo{number, labels}
 }
