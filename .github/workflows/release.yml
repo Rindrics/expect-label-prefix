@@ -59,3 +59,40 @@ jobs:
 
     - name: Image push completed
       run: echo "Docker image ${{ env.TAG }} has been pushed to ghcr.io"
+
+  update-major-version-tag:
+    needs: docker-build-and-push
+    if: needs.docker-build-and-push.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract major version
+        id: extract-major-version
+        run: |
+          TAG=${{ needs.docker-build-and-push.outputs.tagpr-tag }}
+          MAJOR_VERSION=$(echo "$TAG" | grep -oP '^v\d+')
+          echo "MAJOR_VERSION_TAG=$MAJOR_VERSION" >> $GITHUB_OUTPUT
+
+    - id: lowercase-reponame
+      run: |
+        echo "IMAGE=${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
+
+      - name: Build and push Docker image with major version tag
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ghcr.io/${{ steps.lowercase-reponame.outputs.IMAGE }}:${{ steps.extract-major-version.outputs.MAJOR_VERSION_TAG }}
