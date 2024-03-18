@@ -85,9 +85,9 @@ jobs:
           MAJOR_VERSION=$(echo "$TAG" | grep -oP '^v\d+')
           echo "MAJOR_VERSION_TAG=$MAJOR_VERSION" >> $GITHUB_OUTPUT
 
-    - id: lowercase-reponame
-      run: |
-        echo "IMAGE=${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
+      - id: lowercase-reponame
+        run: |
+          echo "IMAGE=${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image with major version tag
         uses: docker/build-push-action@v5
