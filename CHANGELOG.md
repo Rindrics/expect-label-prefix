@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.17](https://github.com/Rindrics/require-label-prefix-single/compare/v0.0.16...v0.0.17) - 2024-03-18
+- Correct hard-coded comment body by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/44
+
 ## [v0.0.16](https://github.com/Rindrics/require-label-prefix-single/compare/v0.0.15...v0.0.16) - 2024-03-18
 - Fix: blank repo info on `AddLabels()` by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/42
 
