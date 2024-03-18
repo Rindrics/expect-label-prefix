@@ -45,13 +45,25 @@ func TestPostCommentCommandError(t *testing.T) {
 	assert.ErrorIs(t, err, expectedError)
 }
 
+func matchAddLabelsParams(expectedParams AddLabelsParams) func(AddLabelsParams) bool {
+	return func(params AddLabelsParams) bool {
+		return params.RepoInfo.Owner == expectedParams.RepoInfo.Owner && params.RepoInfo.Repo == expectedParams.RepoInfo.Repo
+	}
+}
+
+func matchPostCommentParams(expectedParams PostCommentParams) func(PostCommentParams) bool {
+	return func(params PostCommentParams) bool {
+		return params.RepoInfo.Owner == expectedParams.RepoInfo.Owner && params.RepoInfo.Repo == expectedParams.RepoInfo.Repo
+	}
+}
+
 func TestAddLabelsCommandWithPostCommentOnSuccess(t *testing.T) {
 	mockLabeler := new(MockLabeler)
 	mockCommenter := new(MockCommenter)
 	mockExitAction := new(MockExitAction)
 
-	mockLabeler.On("AddLabels", mockLabeler.AddLabelsParams).Return(nil)
-	mockCommenter.On("PostComment", mockCommenter.PostCommentParams).Return(nil)
+	mockLabeler.On("AddLabels", mock.MatchedBy(matchAddLabelsParams(mockLabeler.AddLabelsParams))).Return(nil)
+	mockCommenter.On("PostComment", mock.MatchedBy(matchPostCommentParams(mockCommenter.PostCommentParams))).Return(nil)
 	mockExitAction.On("Perform").Return(nil)
 
 	postCommentCommand := PostCommentCommand{

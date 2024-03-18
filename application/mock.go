@@ -25,7 +25,7 @@ func (m *MockCommenter) PostComment(p PostCommentParams) error {
 
 type MockLabeler struct {
 	mock.Mock
-	AddLabelsParams
+	AddLabelsParams AddLabelsParams
 }
 
 func (m *MockLabeler) AddLabels(p AddLabelsParams) error {
