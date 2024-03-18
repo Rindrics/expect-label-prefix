@@ -22,11 +22,11 @@ type Config struct {
 func NewConfig() *Config {
 	repositoryFullName := os.Getenv("GITHUB_REPOSITORY")
 	token := os.Getenv("INPUT_TOKEN")
-	addLabel := env.GetBoolDefault("INPUT_ADD_LABEL", true)
+	addLabel := env.GetBoolDefault("INPUT_ADD_LABEL", false)
 	defaultLabel := env.GetDefault("INPUT_DEFAULT_LABEL", "label-required")
 	prefix := env.GetDefault("INPUT_LABEL_PREFIX", "prefix")
 	separator := env.GetDefault("INPUT_LABEL_SEPARATOR", "/")
-	comment := env.GetDefault("INPUT_COMMENT", "Add a label with a prefix.")
+	comment := env.GetDefault("INPUT_COMMENT", "Label with required prefix not found.")
 
 	parts := strings.Split(repositoryFullName, "/")
 	if len(parts) != 2 {
