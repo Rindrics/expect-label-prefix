@@ -1,4 +1,4 @@
-# require-label-prefix-single
+# GitHub Action - Require Label Prefix 'Single'
 
 Inspired by: [trstringer/require-label-prefix](https://github.com/trstringer/require-label-prefix)
 
