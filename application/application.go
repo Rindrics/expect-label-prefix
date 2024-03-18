@@ -11,6 +11,10 @@ func New(info domain.EventInfo, client GitHubClient, config Config, logger Logge
 			Command: AddLabelsCommand{
 				Labeler: client,
 				Params: AddLabelsParams{
+					RepoInfo: domain.RepoInfo{
+						Owner: config.Owner,
+						Repo:  config.Repository,
+					},
 					Number: info.Number,
 					Labels: domain.Labels{config.DefaultLabel},
 				},
