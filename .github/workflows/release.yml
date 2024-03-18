@@ -60,6 +60,9 @@ jobs:
     - name: Image push completed
       run: echo "Docker image ${{ env.TAG }} has been pushed to ghcr.io"
 
+    outputs:
+      TAG: ${{ env.TAG }}
+
   update-major-version-tag:
     needs: docker-build-and-push
     if: needs.docker-build-and-push.result == 'success'
@@ -81,7 +84,7 @@ jobs:
       - name: Extract major version
         id: extract-major-version
         run: |
-          TAG=${{ needs.docker-build-and-push.outputs.tagpr-tag }}
+          TAG=${{ needs.docker-build-and-push.outputs.TAG }}
           MAJOR_VERSION=$(echo "$TAG" | grep -oP '^v\d+')
           echo "MAJOR_VERSION_TAG=$MAJOR_VERSION" >> $GITHUB_OUTPUT
 
