@@ -62,3 +62,17 @@ func (m *MockLogger) Debug(msg string, args ...interface{}) {
 func (m *MockLogger) Error(msg string, args ...interface{}) {
 	m.Called(msg, args)
 }
+
+type MockGitHubClient struct {
+	mock.Mock
+}
+
+func (m *MockGitHubClient) AddLabels(p AddLabelsParams) error {
+	args := m.Called(p)
+	return args.Error(0)
+}
+
+func (m *MockGitHubClient) PostComment(p PostCommentParams) error {
+	args := m.Called(p)
+	return args.Error(0)
+}

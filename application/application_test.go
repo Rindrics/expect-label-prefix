@@ -3,8 +3,42 @@ package application
 import (
 	"testing"
 
+	"github.com/Rindrics/require-label-prefix-single/domain"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
+
+func TestNewApp(t *testing.T) {
+	client := &MockGitHubClient{}
+	logger := &MockLogger{}
+	config := &Config{
+		Owner:        "test-owner",
+		Repository:   "test-repo",
+		AddLabel:     true,
+		DefaultLabel: "bug",
+		Comment:      "Label added",
+	}
+	info := domain.EventInfo{
+		Number: 42,
+	}
+
+	logger.On("Debug", mock.AnythingOfType("string"), mock.Anything).Return()
+
+	app := New(info, client, *config, logger)
+
+	switch cmd := app.Command.(type) {
+	case AddLabelsCommand:
+		assert.Equal(t, "test-owner", cmd.Params.RepoInfo.Owner)
+		assert.Equal(t, "test-repo", cmd.Params.RepoInfo.Repo)
+	case PostCommentCommand:
+		assert.Equal(t, "test-owner", cmd.Params.RepoInfo.Owner)
+		assert.Equal(t, "test-repo", cmd.Params.RepoInfo.Repo)
+	default:
+		t.Fatalf("Unexpected command type: %T", app.Command)
+	}
+
+	logger.AssertExpectations(t)
+}
 
 func TestRun(t *testing.T) {
 	t.Run("add label and then post comment", func(t *testing.T) {
