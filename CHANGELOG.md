@@ -3,6 +3,12 @@
 ## [v1.1.0](https://github.com/Rindrics/require-label-prefix-single/compare/v1.0.0...v1.1.0) - 2024-03-18
 - Remove 'pull request' from `README.md` because it is unsupported yet by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/52
 - Support event type 'pull request' by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/54
+- Update major version tag on every release by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/56
+- Correct yaml syntax by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/57
+
+## [v1.1.0](https://github.com/Rindrics/require-label-prefix-single/compare/v1.0.0...v1.1.0) - 2024-03-18
+- Remove 'pull request' from `README.md` because it is unsupported yet by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/52
+- Support event type 'pull request' by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/54
 
 ## [v1.0.0](https://github.com/Rindrics/require-label-prefix-single/compare/v0.0.18...v1.0.0) - 2024-03-18
 - Update action name by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/50
