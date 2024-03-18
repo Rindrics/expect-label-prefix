@@ -5,6 +5,7 @@ import (
 )
 
 func New(info domain.EventInfo, client GitHubClient, config Config, logger Logger) App {
+	logger.Debug("config", "Owner", config.Owner, "Repository", config.Repository)
 	if config.AddLabel {
 		return App{
 			Command: AddLabelsCommand{
