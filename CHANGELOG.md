@@ -1,5 +1,8 @@
 # Changelog
 
+## [v1.2.0](https://github.com/Rindrics/require-label-prefix-single/compare/v1.1.1...v1.2.0) - 2024-03-22
+- Suppress comment after adding default label by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/62
+
 ## [v1.1.1](https://github.com/Rindrics/require-label-prefix-single/compare/v1.1.0...v1.1.1) - 2024-03-18
 - Correct reference to tag by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/59
 
