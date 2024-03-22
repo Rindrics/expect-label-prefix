@@ -18,18 +18,7 @@ func New(info domain.EventInfo, client GitHubClient, config Config, logger Logge
 					Number: info.Number,
 					Labels: domain.Labels{config.DefaultLabel},
 				},
-				OnSuccess: PostCommentCommand{
-					Commenter: client,
-					Params: PostCommentParams{
-						RepoInfo: domain.RepoInfo{
-							Owner: config.Owner,
-							Repo:  config.Repository,
-						},
-						Number: info.Number,
-						Body:   "Label added",
-					},
-					OnSuccess: &ExitAction{},
-				},
+				OnSuccess: &ExitAction{},
 			},
 			Logger: logger,
 		}
