@@ -18,5 +18,5 @@ func (c AddLabelsCommand) Execute() error {
 		return err
 	}
 
-	return c.OnSuccess.Execute()
+	return c.OnSuccess.Perform()
 }

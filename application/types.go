@@ -48,7 +48,7 @@ type AddLabelsParams struct {
 type AddLabelsCommand struct {
 	Params    AddLabelsParams
 	Labeler   Labeler
-	OnSuccess PostCommentCommand
+	OnSuccess Action
 }
 
 type Action interface {
