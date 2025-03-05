@@ -1,5 +1,7 @@
 # Changelog
 
+## [v1.2.1](https://github.com/Rindrics/expect-label-prefix/compare/v1.2.0...v1.2.1) - 2025-03-05
+
 ## [v1.2.0](https://github.com/Rindrics/require-label-prefix-single/compare/v1.1.1...v1.2.0) - 2024-03-22
 - Suppress comment after adding default label by @Rindrics in https://github.com/Rindrics/require-label-prefix-single/pull/62
 
