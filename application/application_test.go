@@ -3,7 +3,7 @@ package application
 import (
 	"testing"
 
-	"github.com/Rindrics/require-label-prefix-single/domain"
+	"github.com/Rindrics/expect-label-prefix/domain"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

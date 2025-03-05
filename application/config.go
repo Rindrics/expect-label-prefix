@@ -23,10 +23,10 @@ func NewConfig() *Config {
 	repositoryFullName := os.Getenv("GITHUB_REPOSITORY")
 	token := os.Getenv("INPUT_TOKEN")
 	addLabel := env.GetBoolDefault("INPUT_ADD_LABEL", false)
-	defaultLabel := env.GetDefault("INPUT_DEFAULT_LABEL", "label-required")
+	defaultLabel := env.GetDefault("INPUT_DEFAULT_LABEL", "label-expected")
 	prefix := env.GetDefault("INPUT_LABEL_PREFIX", "prefix")
 	separator := env.GetDefault("INPUT_LABEL_SEPARATOR", "/")
-	comment := env.GetDefault("INPUT_COMMENT", "Label with required prefix not found.")
+	comment := env.GetDefault("INPUT_COMMENT", "Label with expected prefix not found.")
 
 	parts := strings.Split(repositoryFullName, "/")
 	if len(parts) != 2 {

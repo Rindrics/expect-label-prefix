@@ -1,4 +1,4 @@
-name: 'Require Label Prefix Single'
+name: 'Expect Label Prefix'
 description: 'Add label or post comment to the issue/PR just emitted an event'
 inputs:
   repository_full_name:
@@ -8,10 +8,10 @@ inputs:
     description: 'Secret for GitHub API'
     required: true
   label_prefix:
-    description: 'Label prefix to require'
+    description: 'Label prefix to expect'
     required: true
   label_separator:
-    description: 'Character that separates between required prefix and label body'
+    description: 'Character that separates between expected prefix and label body'
     default: '/'
     required: false
   add_label:
@@ -31,4 +31,4 @@ inputs:
     required: false
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/rindrics/require-label-prefix-single:v1.2.0'
+  image: 'docker://ghcr.io/rindrics/expect-label-prefix:v1.2.0'

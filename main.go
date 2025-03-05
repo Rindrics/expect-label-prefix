@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/Rindrics/require-label-prefix-single/application"
-	"github.com/Rindrics/require-label-prefix-single/domain"
-	"github.com/Rindrics/require-label-prefix-single/infra"
+	"github.com/Rindrics/expect-label-prefix/application"
+	"github.com/Rindrics/expect-label-prefix/domain"
+	"github.com/Rindrics/expect-label-prefix/infra"
 )
 
 func main() {

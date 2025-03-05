@@ -1,4 +1,4 @@
-# GitHub Action - Require Label Prefix 'Single'
+# GitHub Action - Expect Label Prefix
 
 Inspired by: [trstringer/require-label-prefix](https://github.com/trstringer/require-label-prefix)
 
@@ -13,20 +13,20 @@ This action handles only a single issue or pull request just emitted an event (d
 
 ```yaml
     steps:
-      - name: Require label if not found
-        uses: Rindrics/require-label-prefix-single@v1
+      - name: Assert that the issue has expected labels
+        uses: Rindrics/expect-label-prefix@v1
         with:
           token: ${{ github.TOKEN }}
 
           # [label_prefix]
-          # The prefix you require the issue to have.
-          # If you require size labels (e.g. "size/S", "size/L") are enforced,
+          # The prefix you expect the issue to have.
+          # If you expect size labels (e.g. "size/S", "size/L") are enforced,
           # the prefix would be "size".
           label_prefix: size
 
           # [add_label]
           # Whethe or not to add 'default_label' (explained below) to the issue
-          # which does not have labels with required prefix.
+          # which does not have labels with expected prefix.
           # Options: "true", "false" (default).
           # add_label: false
 
@@ -41,6 +41,6 @@ This action handles only a single issue or pull request just emitted an event (d
 
           # [comment]
           # The comment body to be used if `add_label=false`
-          # Default value: "Label with required prefix not found."
+          # Default value: "Label with expected prefix not found."
           # comment: ""
 ```

@@ -4,7 +4,7 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/Rindrics/require-label-prefix-single/application"
+	"github.com/Rindrics/expect-label-prefix/application"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
 )

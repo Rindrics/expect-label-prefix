@@ -1,7 +1,7 @@
 package application
 
 import (
-	"github.com/Rindrics/require-label-prefix-single/domain"
+	"github.com/Rindrics/expect-label-prefix/domain"
 )
 
 func New(info domain.EventInfo, client GitHubClient, config Config, logger Logger) App {
